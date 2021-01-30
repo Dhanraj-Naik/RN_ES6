@@ -4,8 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LearnTopic from './screens/LearnTopic';
 import ImportAndExport from './screens/ImportAndExport/ImportAndExport';
-import BlockScopedDeclarations from './BlockScopedDeclarations/BlockScopedDeclarations';
 import Scopes from './screens/Scopes/Scopes';
+import ArrowFunctions from './screens/ArrowFunctions';
 
 
 const Stack = createStackNavigator();
@@ -25,17 +25,16 @@ const App = () => {
           }}
         />
         <Stack.Screen
+          name={'scopes'}
+          component={Scopes}
+        />
+        <Stack.Screen
           name={'importAndExport'}
           component={ImportAndExport}
         />
         <Stack.Screen
-          name={'blockScopedDeclarations'}
-          component={BlockScopedDeclarations}
-        />
-
-        <Stack.Screen
-          name={'scopes'}
-          component={Scopes}
+          name={'arrowFunctions'}
+          component={ArrowFunctions}
         />
       </Stack.Navigator>
 
