@@ -14,6 +14,7 @@ import TemplateLiterals from './screens/TemplateLiterals/TemplateLiterals';
 import ArrayDestructuring from './screens/Destructuring/ArrayDestructuring';
 import ObjectDestructuring from './screens/Destructuring/ObjectDestructuring';
 import ClassesScene from './screens/ClassesScene/ClassesScene';
+import MapType from './screens/MapType/MapType';
 
 
 const Stack = createStackNavigator();
@@ -75,6 +76,10 @@ const App = () => {
         <Stack.Screen
           name={'classesScene'}
           component={ClassesScene}
+        />
+        <Stack.Screen
+          name={'mapType'}
+          component={MapType}
         />
 
       </Stack.Navigator>

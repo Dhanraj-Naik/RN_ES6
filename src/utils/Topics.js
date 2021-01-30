@@ -40,4 +40,9 @@ export const topics = [
         name: 'Async and Await',
         screenName: 'asyncAndAwait',
     },
+    {
+        id: 8,
+        name: 'Map Object Type',
+        screenName: 'mapType',
+    }
 ];

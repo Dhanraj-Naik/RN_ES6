@@ -169,4 +169,60 @@ console.log(`After swap a: ${a} b: ${b}`);
 
   ---
 
+  ### Maps
+  - Maps are a new object type that allow to store collections of key-value pairs.
+  - Unlike with objects, map keys can be of any type, even objects or functions.
+  - On top of that, with maps we can iterate in the order in which the values were added, contrary to objects where there’s no guarantee about the order.
+  - examples:
+
+  ```javascript
+        const sayHello = () => console.log('Hello guyzz!');
+        //map initialization
+        let things = new Map();
+        things.set('name', 'Dhanraj');
+        things.set('pen', 'BallPen');
+        things.set(sayHello, 'This is a function');
+
+        //Initializing map from arrays
+        const funArray = [
+            ['chicken', 'Tandoori'],
+            ['laptop', 'Coding'],
+            ['Cricket', 'Playing'],
+        ];
+
+        let myArrayMap = new Map(funArray);
+
+        //call
+        console.log(things);
+    console.log(things.has('pen'));
+    console.log(things.get('name'));
+    console.log(things.get(sayHello));
+
+    console.log(myArrayMap);
+    console.log(myArrayMap.keys());
+    console.log(myArrayMap.values());
+
+    // //iterating over map
+    for (const [key, value] of things) {
+        console.log(`key : ${key} has value ${value}.`);
+    }
+
+    //NOTE: here first argument is value and second argument is key
+    things.forEach((key, value) => {
+        console.log(`USING FOREACH: key : ${key} has value ${value}.`);
+    });
+    //output:
+    
+        USING FOREACH: key : Dhanraj has value name.
+        MapType.js:8 USING FOREACH: key : BallPen has value pen.
+        MapType.js:8 USING FOREACH: key : This is a function has value function sayHello() {
+        return console.log('Hello guyzz!');
+    }.
+    
+
+  ``` 
+
+  ---
+  
+
 
