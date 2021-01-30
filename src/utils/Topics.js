@@ -9,11 +9,11 @@ export const topics = [
         name: 'Imports and Exports',
         screenName: 'importAndExport',
     },
-    // {
-    //     id: 2,
-    //     name: 'Block-scoped Declarations',
-    //     screenName: 'blockScopedDeclarations',
-    // },
+    {
+        id: 2,
+        name: 'TemplateLiterals',
+        screenName: 'templateLiterals',
+    },
     {
         id: 3,
         name: 'Arrow Functions',

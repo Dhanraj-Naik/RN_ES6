@@ -6,6 +6,7 @@ import LearnTopic from './screens/LearnTopic';
 import ImportAndExport from './screens/ImportAndExport/ImportAndExport';
 import Scopes from './screens/Scopes/Scopes';
 import ArrowFunctions from './screens/ArrowFunctions';
+import TemplateLiterals from './screens/TemplateLiterals/TemplateLiterals';
 
 
 const Stack = createStackNavigator();
@@ -35,6 +36,11 @@ const App = () => {
         <Stack.Screen
           name={'arrowFunctions'}
           component={ArrowFunctions}
+        />
+
+        <Stack.Screen
+          name={'templateLiterals'}
+          component={TemplateLiterals}
         />
       </Stack.Navigator>
 
