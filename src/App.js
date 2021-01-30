@@ -13,6 +13,7 @@ import ArrowFunctions from './screens/ArrowFunctions';
 import TemplateLiterals from './screens/TemplateLiterals/TemplateLiterals';
 import ArrayDestructuring from './screens/Destructuring/ArrayDestructuring';
 import ObjectDestructuring from './screens/Destructuring/ObjectDestructuring';
+import ClassesScene from './screens/ClassesScene/ClassesScene';
 
 
 const Stack = createStackNavigator();
@@ -20,8 +21,8 @@ const Tab = createBottomTabNavigator();
 
 const DestructuringStack = () => {
   return (
-    <Tab.Navigator 
-    initialRouteName={'objectDestructuring'}
+    <Tab.Navigator
+      initialRouteName={'objectDestructuring'}
     >
       <Tab.Screen
         component={ArrayDestructuring}
@@ -71,8 +72,12 @@ const App = () => {
           name={'destructuringStack'}
           component={DestructuringStack}
         />
-      </Stack.Navigator>
+        <Stack.Screen
+          name={'classesScene'}
+          component={ClassesScene}
+        />
 
+      </Stack.Navigator>
 
     </NavigationContainer>
   );

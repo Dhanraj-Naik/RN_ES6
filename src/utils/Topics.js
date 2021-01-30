@@ -22,7 +22,7 @@ export const topics = [
     {
         id: 4,
         name: 'Classes',
-        screenName: 'classes',
+        screenName: 'classesScene',
     },
     {
         id: 5,
