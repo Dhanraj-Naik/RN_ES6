@@ -31,7 +31,7 @@
 
 ---
 
-### Tempelate Literals or `Template Strings`
+### Template Literals or `Template Strings`
 + Tempelate strings use back-ticks rather then quotes to denote a string.
 + String substitution using tempelate literals
 + Multiline Strings are easy .
