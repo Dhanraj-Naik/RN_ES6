@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import tagLineForBook, { bookName, bookPrice as noteBookPrice } from './CombineExport';
+import tagLineForBook, { bookName, bookPrice as noteBookPrice, dataBook } from './CombineExport';
 import MyNumbers from './MyNumbers';
 import { character, rollNo, userName, characterRealm } from './MyValues';
 import { walletCost, walletName } from './SingleExport';
@@ -31,6 +31,8 @@ export default class ImportAndExport extends Component {
 
                 <Text>{`bottleName: ${Everything.bottleName}`}</Text>
                 <Text>{`bottleTagLine: ${Everything.bottleTagLine}`}</Text>
+
+                <Text>{`bottleTagLine: ${dataBook.xyz}`}</Text>
             </View>
         );
     }

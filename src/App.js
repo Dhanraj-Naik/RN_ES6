@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LearnTopic from './screens/LearnTopic';
 import ImportAndExport from './screens/ImportAndExport/ImportAndExport';
 import BlockScopedDeclarations from './BlockScopedDeclarations/BlockScopedDeclarations';
+import Scopes from './screens/Scopes/Scopes';
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,11 @@ const App = () => {
         <Stack.Screen
           name={'blockScopedDeclarations'}
           component={BlockScopedDeclarations}
+        />
+
+        <Stack.Screen
+          name={'scopes'}
+          component={Scopes}
         />
       </Stack.Navigator>
 

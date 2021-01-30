@@ -6,6 +6,8 @@ export const bookPrice = () => {
 
 const otherTypes = ['Drawing', 'Double Line'];
 
+export var dataBook = { xyz: 'zb' };
+
 export default function tagLineForBook() {
     return 'Future of skill india';
 }

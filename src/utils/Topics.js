@@ -1,5 +1,10 @@
 export const topics = [
     {
+        id: 0,
+        name: 'Scopes',
+        screenName: 'scopes',
+    },
+    {
         id: 1,
         name: 'Imports and Exports',
         screenName: 'importAndExport',
