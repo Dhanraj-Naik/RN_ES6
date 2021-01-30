@@ -34,6 +34,7 @@ export default class LearnTopic extends Component {
                                     key={index}
                                     title={item.name}
                                     onPress={() => this.navigateTo(item)}
+                                    // onPress={() => this.props.navigation.navigate('DestructuringStack')}
                                 />);
                         })
                     }

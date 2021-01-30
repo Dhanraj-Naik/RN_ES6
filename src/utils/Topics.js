@@ -27,7 +27,8 @@ export const topics = [
     {
         id: 5,
         name: 'Destructuring',
-        screenName: 'destructuring',
+        // screenName: 'destructuring',
+        screenName: 'destructuringStack',
     },
     {
         id: 6,
