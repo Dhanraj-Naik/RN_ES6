@@ -20,7 +20,9 @@ const Tab = createBottomTabNavigator();
 
 const DestructuringStack = () => {
   return (
-    <Tab.Navigator initialRouteName={'objectDestructuring'}>
+    <Tab.Navigator 
+    initialRouteName={'objectDestructuring'}
+    >
       <Tab.Screen
         component={ArrayDestructuring}
         name={'arrayDestructuring'}

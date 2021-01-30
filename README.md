@@ -36,3 +36,45 @@
 + String substitution using tempelate literals
 + Multiline Strings are easy .
 
+---
+
+### Destructuring Arrays and objects
++ Array Destructuring
+  - Basic Destructuring
+  - Skipping Items in an Array
+  - Assigning the rest of an array
+  - Destructuring Assignment with Functions
+  - Using Default Values
+  - Swapping Values using Destructuring Assignment
+
+```javascript
+let a = 10;
+let b = 20;
+console.log(`Before swap a: ${a} b: ${b}`);
+[a, b] = [b, a];
+console.log(`After swap a: ${a} b: ${b}`);
+```
+
+[ES6 Array Destructuring](https://dev.to/sarah_chima/destructuring-assignment---arrays-16f)
+
++ Object Destructuring
+  - Basic Destructuring
+  - Using a new Variable Name
+  - Using default values
+  - Computed property names
+
+  ```javascript
+  var prop = "name";
+  var {[prop] : foo} = {name: "Sarah", country: "Nigeria", job: "Developer"};
+  console.log(foo);//"Sarah"
+  ```
+  - Combining Arrays with Objects
+  - Nesting in Object Destructuring
+  - Rest in Object Destructuring
+  - Object Destructuring and Functions
+
+  [ES6 Object Destructuring](https://dev.to/sarah_chima/object-destructuring-in-es6-3fm)
+
+  ---
+  
+
