@@ -21,6 +21,10 @@
     - Arrow functions do not bind their own **this**.Rather, **this** in an arrow function always refers to its parent's this. Arrow functions inherit the scope of their parent.
 
     In ES5, we use **this** either by storing  parents **this** in a variable and use it, or we **bind(this)** ot the function to use it.
+  + When should I use Arrow functions in ES6?
+    - Use **function** in the global scope and for **Object.prototype** properties.
+    - Use **class** for object constructors.
+    - Use **=>** everywhere else.
   +  References:
 
 
