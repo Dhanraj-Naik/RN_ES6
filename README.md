@@ -275,3 +275,157 @@ console.log(`After swap a: ${a} b: ${b}`);
     console.log(myIdGen.next());  //{value: 10, done: false}
   ```
 
+
+  ### Spread With Array
+  + Spread allows objects and iterables (such as arrays) to be unpacked, or expanded, which can be used to make shallow copies of data structures to increase the ease of data manipulation.
+  + Combining two arrays
+
+  ```javascript
+    // Create an Array
+    const tools = ['hammer', 'screwdriver']
+    const otherTools = ['wrench', 'saw']
+
+    //OLD WAY
+    // Concatenate tools and otherTools together
+    const allTools = tools.concat(otherTools)
+
+    //WITH ES6
+    // Unpack the tools Array into the allTools Array
+    const allTools = [...tools, ...otherTools]
+    //output: ["hammer", "screwdriver", "wrench", "saw"]
+  ```
+  + Adding an object in array
+
+    ```javascript
+    // Array of users
+    const users = [
+        { id: 1, name: 'Ben' },
+        { id: 2, name: 'Leslie' },
+    ]
+
+    //old way
+    // A new user to be added
+    const newUser = { id: 3, name: 'Ron' }
+    users.push(newUser)
+
+    //using es6
+    const updatedUsers = [...users, newUser]
+    //output :
+    `[{id: 1, name: "Ben"}
+    {id: 2, name: "Leslie"}
+    {id: 3, name: "Ron"}]`
+    ```
+    ``This is helpful with handling immutability``
+
+  + In Javascript, when you create an object or array and assign it to another variable, you are not actually creating a new object—you are passing a reference.
+
+  ```javascript
+    //an array is created and assigned to another variable
+    // Create an Array
+    const originalArray = ['one', 'two', 'three']
+    // Assign Array to another variable
+    const secondArray = originalArray
+
+    //Removing the last item of the second Array will modify the first one
+    secondArray.pop()
+    console.log(originalArray)
+    //output:
+    `["one", "two"]`
+  ```
+
+  ``Spread allows you to make a shallow copy of an array or object, meaning that any top level properties will be cloned, but nested objects will still be passed by reference. For simple arrays or objects, a shallow copy may be all you need``
+
+  ```javascript
+    // Create an Array
+    const originalArray = ['one', 'two', 'three']
+    // Use spread to make a shallow copy
+    const secondArray = [...originalArray]
+    // Remove the last item of the second Array
+    secondArray.pop()
+    console.log(originalArray) 
+    //output
+    `["one", "two", "three"]` 
+  ```
+
+
+  ### Spread with Object
+  + When working with objects, spread can be used to copy and update objects.
+  + Originally, **Object.assign()** was used to copy an object.
+
+  ```javascript
+    // Create an Object and a copied Object with Object.assign()
+    const originalObject = { enabled: true, darkMode: false }
+    const secondObject = Object.assign({}, originalObject)
+
+    `The secondObject will now be a clone of the originalObject`
+  ```
+  + You can shallow copy an object by spreading it into a new one.
+
+  ```javascript
+    // Create an object and a copied object with spread
+    const originalObject = { enabled: true, darkMode: false }
+    const secondObject = { ...originalObject }
+    console.log(secondObject)
+    //output:
+    `{enabled: true, darkMode: false}`
+  ```
+
+  + Adding or modifying properties on an existing object in an immutable fashion.
+
+  ```javascript
+    const user = {
+        id: 3,
+        name: 'Ron',
+    }
+
+    const updatedUser = { ...user, isLoggedIn: true }
+    console.log(updatedUser)
+    //output
+    {id: 3, name: "Ron", isLoggedIn: true}
+  ```
+
+  + Updating objects via spread is that any nested object will have to be spread as well.
+
+  ```javascript
+    const user = {
+    id: 3,
+    name: 'Ron',
+    organization: {
+        name: 'Parks & Recreation',
+        city: 'Pawnee',
+    },
+    }
+
+    //test1:
+    const updatedUser = { ...user, organization: { position: 'Director' } }
+    console.log(updatedUser)
+    //Output:
+    `
+    id: 3
+    name: "Ron"
+    organization: {position: "Director"}
+    `
+
+  ```
+
+  ``But since we are seeking an immutable solution, we can spread the inner object to retain the existing properties``
+
+
+  ```javascript
+    const updatedUser = {
+        ...user,
+        organization: {
+            ...user.organization,
+            position: 'Director',
+        },
+    }
+
+    console.log(updatedUser)
+    //output:
+    `
+    id: 3
+    name: "Ron"
+    organization: {name: "Parks & Recreation", city: "Pawnee", position: "Director"}
+    `
+  ```
+

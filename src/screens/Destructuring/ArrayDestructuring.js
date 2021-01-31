@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
 
 const names = ['Dhanraj', 'Prachi', 'Pranav', 'Prasad', 'Melinda', 'Sarvesh', 'Sujay'];
 const phones = ['oneplus'];
@@ -28,9 +28,20 @@ const ArrayDestructuring = ({
     [a, b] = [b, a];
     console.log(`After swap a: ${a} b: ${b}`);
 
+
     return (
         <View>
             <Text>ArrayDestructuring</Text>
+            <Button
+                title={'update header title'}
+                onPress={() => navigation.setOptions({ title: 'kide' })}
+            />
+
+
+            <Button
+                title={'Go to Spread Scene'}
+                onPress={() => navigation.navigate('spread')}
+            />
         </View>
     );
 };
