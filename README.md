@@ -429,3 +429,34 @@ console.log(`After swap a: ${a} b: ${b}`);
     `
   ```
 
+
+  ### Rest parameter
+  + syntax appears the same as spread (...) but has the opposite effect. 
+  + Instead of unpacking an array or object into individual values, the rest syntax will create an array of an indefinite number of arguments.
+
+  ```javascript
+    function restTest(...args) {
+        console.log(args)
+    }
+
+    restTest(1, 2, 3, 4, 5, 6)
+
+    //output:
+    [1, 2, 3, 4, 5, 6]
+  ```
+  + Rest syntax can be used as the only parameter or as the last parameter in the list. If used as the only parameter, it will gather all arguments, but if it’s at the end of a list, it will gather every argument that is remaining
+
+  ```javascript
+    function restTest(one, two, ...args) {
+        console.log(one)
+        console.log(two)
+        console.log(args)
+    }
+
+    restTest(1, 2, 3, 4, 5, 6)
+    //output:
+    1
+    2
+    [3, 4, 5, 6]
+  ```
+
