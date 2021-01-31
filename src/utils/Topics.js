@@ -44,5 +44,10 @@ export const topics = [
         id: 8,
         name: 'Map Object Type',
         screenName: 'mapType',
+    },
+    {
+        id: 9,
+        name: 'Generator Functions',
+        screenName: 'generators',
     }
 ];

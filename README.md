@@ -223,6 +223,41 @@ console.log(`After swap a: ${a} b: ${b}`);
   ``` 
 
   ---
-  
+  ### Generators
+  - Generators are functions which can be exited and later re-entered. Their context (variable bindings) will be saved across re-entrances.
+  Or in simple words, A generator allows you to pause the execution of a function and resume it later. 
 
+  ```javascript
+    //example 1: generator function
+    function* someGenerator() {
+        yield 'Cats';
+        yield 'Dogs';
+        yield 'Birds';
+    }
+    const gen = someGenerator();
+
+    //call
+    console.log(gen.next()); //{value: 'Cats', done: false}
+    console.log(gen.next().value); //Dogs
+    console.log(gen.next().done); //false
+    console.log(gen.next()); //{value: undefined, done: true}
+
+    //example2
+    //eg2: ID Generator
+    function* idCreator() {
+        let i = 0;
+        while (true) {
+            ++i;
+            yield i;
+        }
+    }
+
+    const myIdGen = idCreator();
+
+    //call
+    console.log(myIdGen.next()); //{value: 1, done: false}
+    console.log(myIdGen.next()); //{value: 1, done: false}
+    ...
+    console.log(myIdGen.next());  //{value: 10, done: false}
+  ```
 
