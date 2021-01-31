@@ -68,6 +68,20 @@ console.log(`After swap a: ${a} b: ${b}`);
   var {[prop] : foo} = {name: "Sarah", country: "Nigeria", job: "Developer"};
   console.log(foo);//"Sarah"
   ```
+  - **Object.entries** method returns an array of given objects own enumerable string-keyed property [key, value] pairs, in the same order as that provided by a *for...in* or *for-each* loop. 
+
+    ```javascript
+    const note = {
+        id: 1,
+        title: 'My first note',
+        date: '01/01/1970',
+    }
+    // Using forEach
+    Object.entries(note).forEach(([key, value]) => {
+        console.log(`${key}: ${value}`)
+    })
+    ```
+  
   - Combining Arrays with Objects
   - Nesting in Object Destructuring
   - Rest in Object Destructuring

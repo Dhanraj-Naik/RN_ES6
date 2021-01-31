@@ -17,7 +17,7 @@ const ObjectDestructuring = ({
     navigation,
     route,
 }) => {
-    let myName = person.name;
+  /*   let myName = person.name;
     console.log(myName);
     const { name, country, job: myJob, friend = 'Prachi', experience: myExp = 5, friends } = person;
     console.log(name);
@@ -31,7 +31,12 @@ const ObjectDestructuring = ({
     const { [property]: aCharacher, place : { city, ...other} } = Character;
     console.log(aCharacher);
     console.log(city);
-    console.log(other);
+    console.log(other); */
+
+    //Object.entries method returns an array of given objects
+    Object.entries(person).forEach(([key, value]) => {
+        console.log(`key :${key} has value :${value}`);
+    });
 
     return (
         <View>
