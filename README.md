@@ -675,3 +675,5 @@ console.log(`After swap a: ${a} b: ${b}`);
 ```
 
 [A good resporce for callback, promises and async and await](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript)
+
+[Exploring Async/Await Functions in JavaScript](https://www.digitalocean.com/community/tutorials/js-async-functions#simple-example)
