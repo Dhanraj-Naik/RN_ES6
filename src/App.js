@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator, useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import HomeScreen from './screens/HomeScreen';
@@ -20,6 +21,9 @@ import MapType from './screens/MapType/MapType';
 import Generators from './screens/Generators/Generators';
 import Spread from './screens/Destructuring/Spread';
 import Rest from './screens/Destructuring/Rest';
+import AsyncAwait from './screens/AsyncAwait/AsyncAwait';
+import Callbacks from './screens/AsyncAwait/Callbacks';
+import Promises from './screens/AsyncAwait/Promises';
 
 
 const Stack = createStackNavigator();
@@ -27,6 +31,43 @@ const Tab = createBottomTabNavigator();
 
 const ArrayStack = createStackNavigator();
 const ObjectStack = createStackNavigator();
+
+const TopTab = createMaterialTopTabNavigator();
+
+const myTabs = () => {
+  return (
+    <TopTab.Navigator
+      lazy={true}
+      lazyPreloadDistance={1}
+      keyboardDismissMode={'auto'}
+      swipeEnabled={true}
+      timingConfig={{
+        // duration: 1000
+      }}
+    // springConfig={{
+    //   damping: 2000,
+    //   mass: 1000,
+    //   stiffness: 2000,
+    //   restSpeedThreshold : 2000,
+    //   restDisplacementThreshold : 2000,
+    // }}
+    // springVelocityScale={1}
+    >
+      <TopTab.Screen
+        name={'callbacks'}
+        component={Callbacks}
+      />
+      <TopTab.Screen
+        name={'promises'}
+        component={Promises}
+      />
+      <TopTab.Screen
+        name={'asyncAwait'}
+        component={AsyncAwait}
+      />
+    </TopTab.Navigator>
+  );
+};
 
 
 
@@ -197,6 +238,12 @@ const App = () => {
         <ArrayStack.Screen
           name={'rest'}
           component={Rest}
+        />
+
+        <ArrayStack.Screen
+          name={'asyncAwait'}
+          // component={AsyncAwait}
+          component={myTabs}
         />
 
       </Stack.Navigator>

@@ -37,8 +37,8 @@ export const topics = [
     },
     {
         id: 7,
-        name: 'Async and Await',
-        screenName: 'asyncAndAwait',
+        name: 'Promises & Async and Await',
+        screenName: 'asyncAwait',
     },
     {
         id: 8,

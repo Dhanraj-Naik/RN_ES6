@@ -464,3 +464,132 @@ console.log(`After swap a: ${a} b: ${b}`);
     [3, 4, 5, 6]
   ```
 
+
+  ### Callbacks, Promises and async await
+  #### Callback Functions
+  - **Callback functions** do not have special syntax; they are just **a function** that has been passed as an **argument** to **another function**.
+  - The function that takes another function as an argument is called a higher-order function.
+  - Any function can become a callback function if it is passed as an argument.
+  - Callbacks are not asynchronous by nature, but can be used for asynchronous purposes.
+
+  ```javascript
+  //Example of callback function
+    function first() {
+    console.log(1);
+    }
+
+    function second(callback) {
+        setTimeout(() => {
+            console.log(2);
+            callback();
+        }, 10);
+    }
+
+    function third() {
+        console.log(3);
+    }   
+
+    //call
+    first();
+    second(third);
+
+    //output:
+    1
+    2
+    3
+  ```
+
+  ``The callback just allows you to be informed of when an asynchronous task has completed and handles the success or failure of the task.``
+
+  -  **Nested Callbacks and the Pyramid of Doom or Callback Hell**
+  -  Callback functions are an effective way to ensure delayed execution of a function until another one completes and returns with data. However, due to the nested nature of callbacks, code can end up getting messy if you have a lot of consecutive asynchronous requests that rely on each other.
+  -  A result code containing nested callbacks is often called the **pyramid of doom** or **callback hell.**
+
+  ```javascript
+    const pyramidOfDoom = () => {
+        setTimeout(() => {
+            console.log('10');
+            setTimeout(() => {
+                console.log('20');
+                setTimeout(() => {
+                    console.log('30');
+                }, 500);
+            }, 2000);
+        }, 1000);
+    };
+    //call
+    pyramidOfDoom();
+    //output:
+    10
+    20
+    30
+  ```
+
+
+### Promises
+- Promises allow you to very easily deal with asynchronous code without resolving to multiple levels of callback functions (Callback hell).
+- We say that a promise is **pending** when the asynchronous operation is not complete. A promise is **fulfilled** when the operation has been successfully completed. A promise is **rejected** when the operation failed.
+- In ES6, you can create a promise with the ``Promise constructor``. It takes ``a function with two parameters``, usually called ``resolve`` and ``reject``. resolve is the function we will call when our promise is fulfilled, reject will be called when our promise is rejected.
+
+```javascript
+    const specialPromise = () => {
+        return new Promise((resolve, reject) => {
+            console.log('MAKING API CALL');
+            setTimeout(() => {
+                //Math.random() returns a random number between 0 (inclusive),  and 1 (exclusive)
+                //Math.floor Round a number downward to its nearest integer
+                let random = Math.floor(Math.random() * 2); // 1 or 2
+                if (random) {
+                    console.log('SUCCESS');
+                    resolve('Logined in successfully');
+                } else {
+                    console.log('ERROR');
+                    reject('Login error');
+                }
+            }, 4000);
+        });
+    };
+
+    //call
+    specialPromise()
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .then((res) => { //res undefined but final then will be called no matter what.
+            console.log(`final then: ${res}`);
+        });
+
+        //Output1:
+        MAKING API CALL
+        SUCCESS
+        Logged in successfully
+        final then: undefined
+
+        //Output2:
+        MAKING API CALL
+        ERROR
+        Login error
+        final then: undefined
+```
+
+[Good explaination on Promises](https://dev.to/damcosset/i-promise-i-wont-callback-anymore-cp3)
+
+ - Chaining promises: When data from one promise is feed to another promise using then.
+ - Multiple promises: When you want to return multiple promises and wait for all of them to resolve before doing something with that data. **.all** takes in an array of iterables (promises included) and waits for all of those to be resolved before returning values.
+ - But what if you fetch data from an array and still need to transform that data to useful JSON. In that case you might want to return yet another Promise.all. This time with a .map function which maps over the responses and returns .json().
+
+ ```javascript
+    const dog = fetch('https://dog.ceo/api/breeds/image/random');
+    const dev = fetch('https://api.github.com/users/aderaaij');
+
+    Promise
+        .all([dog, dev])
+        .then(res => Promise.all(res.map(r => r.json())))
+        .then(data => console.log(data));
+
+ ```
+
+ [Good resource on Promise.all](https://dev.to/ardennl/about-promises-and-async--await-5ebm)
