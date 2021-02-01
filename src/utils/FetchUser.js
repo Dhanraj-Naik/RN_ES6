@@ -96,3 +96,41 @@ export const promiseAllModified = () => {
         ;
 };
 
+
+export const getAsyncUser = async () => {
+    try {
+        const response = await fetch('https://api.github.com/users/octocat');
+        const data = await response.json();
+        console.log('getAsyncUser', data);
+        return data;
+    } catch (error) {
+        console.log('getAsyncUser err', error);
+        return new Error(error);
+    }
+};
+
+
+//async await fetch call
+export const getDogs = async () => {
+    // Store the promise in a variable
+    const dog1 = fetch('https://dog.ceo/api/breeds/image/random');
+    const dog2 = fetch('https://dog.ceo/api/breeds/image/random');
+
+    const results = await Promise.all([dog1, dog2]); // Wait until both promises are ready
+
+    // Array destructure, await our res.json() promises
+    const [mut1, mut2] = await Promise.all(results.map(res => res.json()));
+    console.log(mut1, mut2);
+
+};
+
+//If we have multiple promises we can even map over them and return them in a Promise.all.
+export const getDogsWithBreed = async (breeds) => {
+    const promises = breeds.map((breed) => {
+        return fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+    });
+    const results = await Promise.all(promises);
+    const data = await Promise.all(results.map(r => r.json()));
+    console.log(data);
+};
+

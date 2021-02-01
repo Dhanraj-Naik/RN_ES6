@@ -1,35 +1,56 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import { getAsyncUser, getDogsWithBreed, getDogs } from '../../utils/FetchUser';
 
-// console.log('this will fire first');
-// setTimeout(() => {
-//     console.log('this will fire second');
-// }, 500);
-// console.log('this will fire last');
-
-
-// A function
-function myCallbackFunction() {
-    console.log('Just a function');
-}
-
-// A function that takes another function as an argument
-function higherOrderFunction(callback) {
-     // When you call a function that is passed as an argument, it is referred to as a callback
-     callback();
-}
-
-const anotherCallbackFunction = () => {
-    console.log('This is also a function');
+const waitDude = (ms) => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (ms) {
+                resolve(`Waited for ${ms} ms`);
+            } else {
+                reject(new Error('Please provide ms'));
+            }
+        }, ms);
+    });
 };
 
-const newHigherOrderFunction = (callback) => {
-    console.log('New higher order');
-    setTimeout(() => {
-        console.log('settimeout done calling callback');
-        callback();
-    }, 100);
+const getSetGo = async () => {
+    try {
+        const res1 = await waitDude(2000);
+        console.log('res1: ', res1);
+        const res2 = await waitDude(3000);
+        console.log('res2: ', res2);
+        const res3 = await waitDude(2000);
+        console.log('res3: ', res3);
+    } catch (error) {
+        console.log(error);
+        console.log('error in MS');
+    }
 };
+
+const goWithoutErrors = async () => {
+    const res1 = await waitDude(2000);
+    console.log('res1: ', res1);
+    const res2 = await waitDude(200);
+    console.log('res2: ', res2);
+    const res3 = await waitDude(2000);
+    console.log('res3: ', res3);
+};
+
+
+// First we make a function that takes in our async function as an argument
+const catchErrors = (fn) => {
+
+    // And return a function
+    return function () {
+        // Which returns our async function, which is a promse on which we can call `.catch`
+        return fn().catch((err) => {
+            console.error('uhoh', err);
+        });
+    };
+};
+
+const wrappedFunc = catchErrors(goWithoutErrors);
 
 const TAG = 'AsyncAwait.js';
 const AsyncAwait = ({
@@ -38,8 +59,20 @@ const AsyncAwait = ({
 
     console.log(TAG, 'called');
 
-    higherOrderFunction(myCallbackFunction);
-    newHigherOrderFunction(anotherCallbackFunction);
+    // getSetGo();
+    // goWithoutErrors();
+
+    // wrappedFunc(goWithoutErrors);
+    // or
+    // wrappedFunc(() =>goWithoutErrors(300));
+
+    // const data = getAsyncUser();
+    // console.log('<><>: ', data);
+
+
+    getDogs();
+
+    // getDogsWithBreed(['husky', 'malamute', 'terrier']);
 
     return (
         <View>

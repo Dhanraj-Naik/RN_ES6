@@ -593,3 +593,85 @@ console.log(`After swap a: ${a} b: ${b}`);
  ```
 
  [Good resource on Promise.all](https://dev.to/ardennl/about-promises-and-async--await-5ebm)
+
+#### Async-Await
+- At the core, Async / Await is build on top of promises.
+- An async function allows you to handle asynchronous code in a manner that appears synchronous.
+- In order to async / await anything, you'll need a function that returns a promise.
+- **await** always needs to be called within a function marked with **async**
+
+```javascript
+    const waitDude = (ms) => {
+    return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (ms) {
+                    resolve(`Waited for ${ms} ms`);
+                } else {
+                    reject(new Error('Please provide ms'));
+                }
+            }, ms);
+        });
+    };
+
+    const getSetGo = async () => {
+        try {
+            const res1 = await waitDude(2000);
+            console.log('res1: ', res1);
+            const res2 = await waitDude(3000);
+            console.log('res2: ', res2);
+            const res3 = await waitDude(2000);
+            console.log('res3: ', res3);
+        } catch (error) {
+            console.log(error);
+            console.log('error in MS');
+        }
+    };
+
+    //call
+    getSetGo();
+
+    //Output:
+    res1: Waited for 2000 ms
+    res2: Waited for 3000 ms
+    res3: Waited for 2000 ms
+
+
+```
+
++ Awaiting multiple promises
+
+```javascript
+    //async await fetch call
+    export const getDogs = async () => {
+        // Store the promise in a variable
+        const dog1 = fetch('https://dog.ceo/api/breeds/image/random');
+        const dog2 = fetch('https://dog.ceo/api/breeds/image/random');
+
+        const results = await Promise.all([dog1, dog2]); // Wait until both promises are ready
+
+        // Array destructure, await our res.json() promises
+        const [mut1, mut2] = await Promise.all(results.map(res => res.json()));
+        console.log(mut1, mut2);
+
+    };  
+    //call
+    getDogs();
+```
+
++ If we have multiple promises we can even map over them and return them in a Promise.all
+
+```javascript
+    //If we have multiple promises we can even map over them and return them in a Promise.all.
+    export const getDogsWithBreed = async (breeds) => {
+        const promises = breeds.map((breed) => {
+            return fetch(`https://dog.ceo/api/breed/${breed}/images/random`);
+        });
+        const results = await Promise.all(promises);
+        const data = await Promise.all(results.map(r => r.json()));
+        console.log(data);
+    };
+    //call
+    getDogsWithBreed(['husky', 'malamute', 'terrier']);
+```
+
+[A good resporce for callback, promises and async and await](https://www.digitalocean.com/community/tutorials/understanding-the-event-loop-callbacks-promises-and-async-await-in-javascript)
